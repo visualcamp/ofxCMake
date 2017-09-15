@@ -48,15 +48,16 @@ set(LIB_FREETYPE ${OF_DIRECTORY_ABSOLUTE}/libs/freetype/lib/osx/freetype.a)
 set(LIB_GLEW    ${OF_DIRECTORY_ABSOLUTE}/libs/glew/lib/osx/glew.a)
 set(LIB_POCO_1  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoCrypto.a)
 set(LIB_POCO_2  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoData.a)
-set(LIB_POCO_3  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoJSON.a)
-set(LIB_POCO_4  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoDataSQLite.a)
-set(LIB_POCO_5  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoFoundation.a)
-set(LIB_POCO_6  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoNet.a)
-set(LIB_POCO_7  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoNetSSL.a)
-set(LIB_POCO_8  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoUtil.a)
-set(LIB_POCO_9  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoXML.a)
-set(LIB_POCO_10 ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoZip.a)
-set(LIB_POCO_11 ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoMongoDB.a)
+set(LIB_POCO_3  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoDataSQLite.a)
+set(LIB_POCO_4  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoJSON.a)
+set(LIB_POCO_5  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoUtil.a)
+set(LIB_POCO_6  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoXML.a)
+set(LIB_POCO_7  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoNet.a)
+set(LIB_POCO_8  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoNetSSL.a)
+set(LIB_POCO_9  ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoZip.a)
+set(LIB_POCO_10 ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoFoundation.a)
+set(LIB_POCO    ${LIB_POCO_1} ${LIB_POCO_2} ${LIB_POCO_3} ${LIB_POCO_4} ${LIB_POCO_5} ${LIB_POCO_6} ${LIB_POCO_7} ${LIB_POCO_8} ${LIB_POCO_9} ${LIB_POCO_10})
+
 set(LIB_RTAUDIO ${OF_DIRECTORY_ABSOLUTE}/libs/rtAudio/lib/osx/rtAudio.a)
 set(LIB_TESS    ${OF_DIRECTORY_ABSOLUTE}/libs/tess2/lib/osx/tess2.a)
 set(LIB_CAIRO1  ${OF_DIRECTORY_ABSOLUTE}/libs/cairo/lib/osx/cairo-script-interpreter.a)
@@ -70,8 +71,9 @@ set(LIB_BOOST_3 ${OF_DIRECTORY_ABSOLUTE}/libs/boost/lib/osx/boost_system.a)
 
 set( OF_CORE_LIBS
         ${LIB_GLUT}
-        ${LIB_POCO_1} ${LIB_POCO_2} ${LIB_POCO_3} ${LIB_POCO_4} ${LIB_POCO_5} ${LIB_POCO_6}
-        ${LIB_POCO_7} ${LIB_POCO_8} ${LIB_POCO_9} ${LIB_POCO_10} ${LIB_POCO_11}
+#        ${LIB_POCO_1} ${LIB_POCO_2} ${LIB_POCO_3} ${LIB_POCO_4} ${LIB_POCO_5} ${LIB_POCO_6}
+#        ${LIB_POCO_7} ${LIB_POCO_8} ${LIB_POCO_9} ${LIB_POCO_10}
+        ${LIB_POCO}
         ${LIB_TESS}
         ${LIB_GLEW}
         ${LIB_CAIRO1} ${LIB_CAIRO2} ${LIB_CAIRO3}
@@ -81,11 +83,12 @@ set( OF_CORE_LIBS
         ${LIB_GLFW}
         ${LIB_FREEIMAGE}
         ${LIB_FREETYPE}
-        ${LIB_BOOST_1} ${LIB_BOOST_3}
+        ${LIB_BOOST_2} ${LIB_BOOST_3}
         )
 # ============================================================================
 # ----------------------------- System Frameworks ----------------------------
-set(FRAMEWORKS_DIR /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks)
+LIST(APPEND FRAMEWORKS_DIR /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX
+        .platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks)
 
 find_library(accelerate_lib     Accelerate)
 find_library(iokit_lib          IOKit)
@@ -104,24 +107,26 @@ find_library(coremedia_lib      CoreMedia)
 find_library(avfoundation_lib   AVFoundation)
 find_library(quartzcore_lib     QuartzCore)
 find_library(appkit_lib         AppKit)
+find_library(glut_lib           GLUT)
 
 set( OF_CORE_FRAMEWORKS
         ${accelerate_lib}
-        ${iokit_lib}
         ${agl_lib}
+        ${appkit_lib}
         ${applicationservices_lib}
         ${audiotoolbox_lib}
+        ${avfoundation_lib}
+        ${cocoa_lib}
         ${coreaudio_lib}
         ${corefoundation_lib}
-        ${coreservices_lib}
-        ${opengl_lib}
-        ${quicktime_lib}
-        ${corevideo_lib}
-        ${qtkit_lib}
-        ${cocoa_lib}
         ${coremedia_lib}
-        ${avfoundation_lib}
+        ${coreservices_lib}
+        ${corevideo_lib}
+        ${iokit_lib}
+        ${opengl_lib}
         ${quartzcore_lib}
-        ${appkit_lib}
+        ${quicktime_lib}
+        ${qtkit_lib}
+#        ${glut_lib}
         )
 
