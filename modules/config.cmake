@@ -30,6 +30,12 @@ set_target_properties(  ${OFX_ADDONS_ACTIVE}
         ARCHIVE_OUTPUT_DIRECTORY    ${OF_CMAKE_LIBS}
         )
 
+set_target_properties(pupil_static
+        PROPERTIES
+        LIBRARY_OUTPUT_DIRECTORY    ${OF_CMAKE_LIBS}
+        ARCHIVE_OUTPUT_DIRECTORY    ${OF_CMAKE_LIBS}
+        )
+
 #TODO This does not copy the libs
 set_target_properties(  of_static PROPERTIES LIBRARY_OUTPUT_DIRECTORY    ${OF_CMAKE_LIBS} )
 set_target_properties(  of_static PROPERTIES ARCHIVE_OUTPUT_DIRECTORY    ${OF_CMAKE_LIBS} )

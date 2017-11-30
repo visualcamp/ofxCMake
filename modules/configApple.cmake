@@ -18,6 +18,7 @@ add_compile_options(-Wno-deprecated-declarations)
 add_executable( ${APP_NAME} MACOSX_BUNDLE ${${APP_NAME}_SOURCE_FILES} )
 
 target_link_libraries(  ${APP_NAME}
+                        pupil_static
                         $<TARGET_FILE:of_shared>
                         ${opengl_lib}               # TODO Why is this needed here?
                         ${OFX_ADDONS_ACTIVE}
@@ -28,7 +29,8 @@ target_link_libraries(  ${APP_NAME}
 ADD_CUSTOM_COMMAND( TARGET ${APP_NAME}
         POST_BUILD
         COMMAND ${CMAKE_INSTALL_NAME_TOOL}
-        ARGS -change "@rpath/libopenFrameworks.dylib" "@loader_path/../Frameworks/libopenFrameworks.dylib" $<TARGET_FILE:${APP_NAME}>
+        ARGS -change "@rpath/libopenFrameworksShared.dylib"
+        "@loader_path/../Frameworks/libopenFrameworksShared.dylib" $<TARGET_FILE:${APP_NAME}>
         )
 
 # TODO Explain the excecutable bindings
