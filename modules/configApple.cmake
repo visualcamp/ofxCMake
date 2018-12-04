@@ -18,8 +18,6 @@ add_compile_options(-Wno-deprecated-declarations)
 add_executable( ${APP_NAME} MACOSX_BUNDLE ${${APP_NAME}_SOURCE_FILES} )
 
 target_link_libraries(  ${APP_NAME}
-                        pupil
-                        pupil-libs
                         $<TARGET_FILE:of_shared>
                         ${opengl_lib}               # TODO Why is this needed here?
                         ${OFX_ADDONS_ACTIVE}
