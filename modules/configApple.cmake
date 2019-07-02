@@ -21,6 +21,7 @@ target_link_libraries(  ${APP_NAME}
                         $<TARGET_FILE:of_shared>
                         ${opengl_lib}               # TODO Why is this needed here?
                         ${OFX_ADDONS_ACTIVE}
+                        ${VC_USER_SPECIFIC_DEPENDENCY}
                         ${LIB_POCO}
                         )
 
